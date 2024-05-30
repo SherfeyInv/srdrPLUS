@@ -24,7 +24,7 @@ group :development do
 end
 
 gem 'amoeba' # for things like cloning questions (extraction forms maybe?)
-gem 'apipie-rails' # Api documentation.
+gem 'apipie-rails' , '>= 1.4.0' # Api documentation.
 gem 'autoprefixer-rails' # Use Zurb Foundation as Front-End Framework
 gem 'awesome_print'
 gem 'aws-sdk-s3', require: false # Access to AWS S3 Cloud Storage.

@@ -24,7 +24,7 @@ group :development do
 end
 
 gem 'amoeba' # for things like cloning questions (extraction forms maybe?)
-gem 'apipie-rails' # Api documentation.
+gem 'apipie-rails' , '>= 1.4.0' # Api documentation.
 gem 'autoprefixer-rails' # Use Zurb Foundation as Front-End Framework
 gem 'awesome_print'
 gem 'aws-sdk-s3', require: false # Access to AWS S3 Cloud Storage.
@@ -64,7 +64,7 @@ gem 'puma' # Use Puma as the app server
 gem 'pundit' # authorizations.
 gem 'rack-attack' # Limit request rates
 gem 'rack-cors' # CORS.
-gem 'rails', '~> 7.0.3'
+gem 'rails', '~> 7.0.8', '>= 7.0.8.4'
 gem 'redis'
 gem 'ref_parsers', github: 'jensjap/ref_parsers' # for parsing ris files.
 gem 'remotipart', github: 'mshibuya/remotipart'
@@ -82,7 +82,7 @@ gem 'sidekiq-cron' # Allows periodic background jobs
 gem 'simple_form'
 gem 'slim-rails'
 gem 'sortable-rails' # List reordering, Drag & Drop.
-gem 'tailwindcss-rails'
+gem 'tailwindcss-rails', '>= 2.6.0'
 gem 'toastr_rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby] # Windows does not include zoneinfo files
 gem 'uglifier' # Use Uglifier as compressor for JavaScript assets

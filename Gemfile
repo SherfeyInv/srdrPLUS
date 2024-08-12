@@ -76,9 +76,9 @@ gem 'rubyXL' # Spreadsheet reading.
 gem 'sass-rails' # Use SCSS for stylesheets
 gem 'searchjoy'
 gem 'searchkick'
-gem 'sentry-rails'
+gem 'sentry-rails', '>= 5.18.0'
 gem 'sentry-ruby' # full-stack error tracking system
-gem 'sentry-sidekiq' # full-stack error tracking system
+gem 'sentry-sidekiq' , '>= 5.18.0' # full-stack error tracking system
 gem 'sidekiq' # Background jobs.
 gem 'sidekiq-cron' # Allows periodic background jobs
 gem 'simple_form'

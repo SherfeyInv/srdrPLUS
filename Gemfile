@@ -66,7 +66,7 @@ gem 'puma' # Use Puma as the app server
 gem 'pundit' # authorizations.
 gem 'rack-attack' # Limit request rates
 gem 'rack-cors' # CORS.
-gem 'rails', '~> 7.0.3'
+gem 'rails', '~> 7.0.8', '>= 7.0.8.5'
 gem 'redis'
 gem 'ref_parsers', github: 'jensjap/ref_parsers' # for parsing ris files.
 gem 'remotipart', github: 'mshibuya/remotipart'

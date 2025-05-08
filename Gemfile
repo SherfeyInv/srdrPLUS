@@ -66,7 +66,7 @@ gem 'puma' # Use Puma as the app server
 gem 'pundit' # authorizations.
 gem 'rack-attack' # Limit request rates
 gem 'rack-cors' # CORS.
-gem 'rails', '~> 7.0.3'
+gem 'rails', '~> 7.2.0'
 gem 'redis'
 gem 'ref_parsers', github: 'jensjap/ref_parsers' # for parsing ris files.
 gem 'remotipart', github: 'mshibuya/remotipart'
@@ -79,7 +79,7 @@ gem 'searchkick'
 gem 'sentry-rails'
 gem 'sentry-ruby' # full-stack error tracking system
 gem 'sentry-sidekiq' # full-stack error tracking system
-gem 'sidekiq' # Background jobs.
+gem 'sidekiq' , '>= 8.0.0' # Background jobs.
 gem 'sidekiq-cron' # Allows periodic background jobs
 gem 'simple_form'
 gem 'slim-rails'

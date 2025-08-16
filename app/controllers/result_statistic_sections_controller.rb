@@ -67,6 +67,10 @@ class ResultStatisticSectionsController < ApplicationController
   def remove_comparison
     respond_to do |format|
       if Comparison.find(params[:comparison_id]).destroy
+        # Prevent WacsBacsRssm orphans.
+        # Note: WacsBacsRssm records that belong to WAC type comparison are automatically removed
+        # due to has_many dependent: :destroy declaration in model/comparison.rb
+        WacsBacsRssm.where(bac_id: params[:comparison_id]).destroy_all
         format.js do
           flash.now[:notice] = ' Comparison removed'
           render :add_comparison
@@ -161,11 +165,23 @@ class ResultStatisticSectionsController < ApplicationController
       measures_attributes: %i[id name _destroy],
       measure_ids: [],
       result_statistic_sections_measures_attributes: [measure_attributes: %i[id name]],
-      comparisons_attributes: [:id, :is_anova,
-                               { comparate_groups_attributes: [:id,
-                                                               { comparates_attributes: [:id,
-                                                                                         { comparable_element_attributes: %i[id comparable_type
-                                                                                                                             comparable_id] }] }] }]
+      comparisons_attributes: [
+        :id,
+        :is_anova,
+        {
+          comparate_groups_attributes: [
+            :id,
+            {
+              comparates_attributes: [
+                :id,
+                {
+                  comparable_element_attributes: %i[id comparable_type comparable_id]
+                }
+              ]
+            }
+          ]
+        }
+      ]
     )
     #
     #        measure_ids: [],

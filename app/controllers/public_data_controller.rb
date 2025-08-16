@@ -3,7 +3,9 @@ class PublicDataController < ApplicationController
   skip_before_action :authenticate_user!
 
   def show
-    if @project&.public?
+    if @project&.dei_blacklisted?
+      render 'public_data/dei_blacklisted'
+    elsif @project&.public?
       render @template
     else
       path_error_page = Rails.public_path.join('404.html')
@@ -27,8 +29,10 @@ class PublicDataController < ApplicationController
         @extraction = Extraction.find(id)
         update_record_helper_dictionaries(@extraction)
         @project = @extraction.project
-        @extraction_forms_projects = @project.extraction_forms_projects.includes(:extraction_form)
-
+        @extraction_forms_projects = @project.
+                                       extraction_forms_projects.
+                                       includes(:extraction_form).
+                                       reject { |efp| efp.extraction_forms_project_type_id.eql?(3) }
 
         if @extraction_forms_projects.first.extraction_forms_project_type.name.eql? ExtractionFormsProjectType::DIAGNOSTIC_TEST
           @eefpst1s = ExtractionsExtractionFormsProjectsSectionsType1

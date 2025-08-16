@@ -30,6 +30,7 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  project_blacklisted: "The project you are attempting to access (\"%{project_name}\") is currently not available for edit. Please contact your program manager for details."
   export: Export
   submit: Submit
   create_extraction_form: Create Extraction Form
@@ -169,3 +170,10 @@ en:
   manage_citations: Manage Citation(s)
   manage_screening_options: Manage Screening Options
   manage_tasks: Manage Task(s)
+  activerecord:
+    errors:
+      models:
+        extractions_extraction_forms_projects_sections_type1:
+          attributes:
+            type1:
+              taken: "Failed to create resource. Please ensure that name, description and if applicable the resource type are unique."

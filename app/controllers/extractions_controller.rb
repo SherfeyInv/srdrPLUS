@@ -199,6 +199,10 @@ class ExtractionsController < ApplicationController
   # GET /extractions/1/work
   def work
     @project = @extraction.project
+    if project_blacklisted?(@project.id)
+      flash[:alert] = t('project_blacklisted', project_name: @project.name)
+      return
+    end
     authorize(@extraction)
     @nav_buttons.push('extractions', 'my_projects')
 
@@ -250,6 +254,13 @@ class ExtractionsController < ApplicationController
                      end
 
           update_record_helper_dictionaries @extraction
+          if @eefps_by_efps_dict[params["panel-tab"].to_i]&.dig(0)&.section&.name.eql?("Results")
+            if @eefpst1.present? && @extraction_forms_projects.first.extraction_forms_project_type.name.eql?(ExtractionFormsProjectType::STANDARD)
+              unless @eefpst1.comparisons_assisted
+                @eefpst1.assist_with_comparisons
+              end
+            end
+          end
         end
       end
     end
@@ -270,7 +281,7 @@ class ExtractionsController < ApplicationController
           update_eefps_by_extraction_and_efps_dict(extraction)
         end
         @project                   = @extraction.project
-        @extraction_forms_projects = @project.extraction_forms_projects
+        @extraction_forms_projects = set_extraction_forms_projects
         if @extraction_forms_projects.first.extraction_forms_project_type.eql?(ExtractionFormsProjectType.find_by(name: ExtractionFormsProjectType::STANDARD))
           @eefpst1s = ExtractionsExtractionFormsProjectsSectionsType1
                       .by_section_name_and_extraction_id_and_extraction_forms_project_id('Outcomes',
@@ -283,6 +294,12 @@ class ExtractionsController < ApplicationController
                                                                                          @extraction_forms_projects.first.id)
         else
           next
+        end
+
+        if @extraction_forms_projects.first.extraction_forms_project_type.name.eql? ExtractionFormsProjectType::STANDARD
+          unless @eefpst1.comparisons_assisted
+            @eefpst1.assist_with_comparisons
+          end
         end
       end
     end
@@ -467,6 +484,9 @@ class ExtractionsController < ApplicationController
   end
 
   def set_extraction_forms_projects
-    @extraction_forms_projects = @project.extraction_forms_projects.includes(:extraction_form)
+    @extraction_forms_projects = @project.
+                                   extraction_forms_projects.
+                                   includes(:extraction_form).
+                                   reject { |efp| efp.extraction_forms_project_type_id.eql?(3) }
   end
 end

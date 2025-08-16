@@ -16,19 +16,7 @@
 
 class CitationsProject < ApplicationRecord
   searchkick callbacks: :async,
-             mappings: {
-               properties: {
-                 accession_number_alts: { type: 'keyword' },
-                 author_map_string: { type: 'keyword' },
-                 name: { type: 'keyword' },
-                 year: { type: 'keyword' },
-                 abstract_qualification: { type: 'keyword' },
-                 fulltext_qualification: { type: 'keyword' },
-                 extraction_qualification: { type: 'keyword' },
-                 consolidation_qualification: { type: 'keyword' },
-                 screening_status: { type: 'keyword' },
-               }
-             }
+             batch_size: 5000
 
   scope :not_disqualified,
         -> { where.not(screening_status: CitationsProject::REJECTED) }
@@ -251,7 +239,7 @@ class CitationsProject < ApplicationRecord
     elsif screening_qualifications.where(qualification_type: ScreeningQualification::FS_ACCEPTED).present?
       update(screening_status: E_NEED_EXTRACTION)
     elsif (fulltext_screening_results.where(label: -1).present? && fulltext_screening_results.where(label: 1).present?) ||
-          fulltext_screening_results.where(label: 0).present?
+          (fulltext_screening_results.where.not(label: nil).size >= 2 && fulltext_screening_results.where(label: 0).exists?)
       update(screening_status: FS_IN_CONFLICT)
     elsif fulltext_screening_results.present?
       update(screening_status: FS_PARTIALLY_SCREENED)
@@ -260,7 +248,7 @@ class CitationsProject < ApplicationRecord
     elsif screening_qualifications.where(qualification_type: ScreeningQualification::AS_ACCEPTED).present?
       update(screening_status: FS_UNSCREENED)
     elsif (abstract_screening_results.where(label: -1).present? && abstract_screening_results.where(label: 1).present?) ||
-          abstract_screening_results.where(label: 0).present?
+          (abstract_screening_results.where.not(label: nil).size >= 2 && abstract_screening_results.where(label: 0).exists?)
       update(screening_status: AS_IN_CONFLICT)
     elsif abstract_screening_results.present?
       update(screening_status: AS_PARTIALLY_SCREENED)

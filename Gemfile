@@ -40,7 +40,7 @@ gem 'cocoon'
 gem 'coffee-rails' # Use CoffeeScript for .coffee assets and views
 gem 'country_select'
 gem 'devise'
-gem 'dotenv-rails'
+gem 'dotenv-rails', '>= 3.2.0'
 gem 'dropzonejs-rails' # Allows users to drop files to upload
 gem 'elasticsearch'
 gem 'faker', github: 'faker-ruby/faker', branch: 'main'

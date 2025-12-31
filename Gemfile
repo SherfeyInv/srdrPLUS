@@ -51,7 +51,7 @@ gem 'foundation-icons-sass-rails' # Use Zurb Foundation as Front-End Framework
 gem 'foundation-rails' # Use Zurb Foundation as Front-End Framework
 gem 'fuzzy_match' # Fuzzy Match
 gem 'gon' # Access ruby data in JavaScript.
-gem 'httparty' # Simple calls to external API.
+gem 'httparty' , '>= 0.24.0' # Simple calls to external API.
 gem 'jbuilder'
 gem 'jquery-datatables' # For making sortable searchable tables
 gem 'jquery-rails' # Use jquery as the JavaScript library

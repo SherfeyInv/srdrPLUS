@@ -39,7 +39,7 @@ gem 'caxlsx_rails' # Spreadsheet generation.
 gem 'cocoon'
 gem 'coffee-rails' # Use CoffeeScript for .coffee assets and views
 gem 'country_select'
-gem 'devise'
+gem 'devise', '>= 5.0.0'
 gem 'dotenv-rails'
 gem 'dropzonejs-rails' # Allows users to drop files to upload
 gem 'elasticsearch'

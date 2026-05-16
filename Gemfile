@@ -62,7 +62,7 @@ gem 'net-ftp'
 gem 'net-smtp', require: false
 gem 'nokogiri'
 gem 'passenger'
-gem 'puma' # Use Puma as the app server
+gem 'puma' , '>= 6.4.3' # Use Puma as the app server
 gem 'pundit' # authorizations.
 gem 'rack-attack' # Limit request rates
 gem 'rack-cors' # CORS.

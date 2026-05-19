@@ -80,7 +80,7 @@ gem 'sentry-rails'
 gem 'sentry-ruby' # full-stack error tracking system
 gem 'sentry-sidekiq' # full-stack error tracking system
 gem 'sidekiq' # Background jobs.
-gem 'sidekiq-cron' # Allows periodic background jobs
+gem 'sidekiq-cron' , '>= 2.0.0' # Allows periodic background jobs
 gem 'simple_form'
 gem 'slim-rails'
 gem 'sortable-rails' # List reordering, Drag & Drop.

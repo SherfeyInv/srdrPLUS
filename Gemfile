@@ -61,7 +61,7 @@ gem 'mysql2' # Use mysql as the database for Active Record
 gem 'net-ftp'
 gem 'net-smtp', require: false
 gem 'nokogiri'
-gem 'passenger'
+gem 'passenger', '>= 6.0.23'
 gem 'puma' # Use Puma as the app server
 gem 'pundit' # authorizations.
 gem 'rack-attack' # Limit request rates

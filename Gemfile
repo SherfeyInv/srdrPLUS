@@ -65,7 +65,7 @@ gem 'passenger'
 gem 'puma' # Use Puma as the app server
 gem 'pundit' # authorizations.
 gem 'rack-attack' # Limit request rates
-gem 'rack-cors' # CORS.
+gem 'rack-cors' , '>= 3.0.0' # CORS.
 gem 'rails', '~> 7.0.3'
 gem 'redis'
 gem 'ref_parsers', github: 'jensjap/ref_parsers' # for parsing ris files.

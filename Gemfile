@@ -10,12 +10,12 @@ group :development, :test do
 end
 
 group :test do
-  gem 'database_cleaner-active_record'
+  gem 'database_cleaner-active_record', '>= 2.2.0'
   gem 'simplecov', require: false
 end
 
 group :development do
-  gem 'active_record_doctor'
+  gem 'active_record_doctor', '>= 1.15.0'
   gem 'annotate'
   gem 'bullet'
   gem 'spring'
@@ -66,7 +66,7 @@ gem 'puma' # Use Puma as the app server
 gem 'pundit' # authorizations.
 gem 'rack-attack' # Limit request rates
 gem 'rack-cors' # CORS.
-gem 'rails', '~> 7.0.3'
+gem 'rails', '~> 7.1.5', '>= 7.1.5.2'
 gem 'redis'
 gem 'ref_parsers', github: 'jensjap/ref_parsers' # for parsing ris files.
 gem 'remotipart', github: 'mshibuya/remotipart'
@@ -74,7 +74,7 @@ gem 'responders' # Help DRY up code.
 gem 'roo'
 gem 'rubyXL' # Spreadsheet reading.
 gem 'sass-rails' # Use SCSS for stylesheets
-gem 'searchjoy'
+gem 'searchjoy', '>= 1.2.0'
 gem 'searchkick'
 gem 'sentry-rails'
 gem 'sentry-ruby' # full-stack error tracking system
